@@ -1,12 +1,23 @@
 from datetime import datetime, timedelta
 import calendar
 import requests
+from SAPP.models import Soil
 
 def fetch_soil_type(lat,lng):
     url=f"https://api-test.openepi.io/soil/type?lon={lng}&lat={lat}&top_k=1"
-    print(url)
     response = requests.get(url)
     return response.json()
 
 def get_soil_ph(lat,lng):
-    return fetch_soil_type(lat,lng)
+    soil_data = fetch_soil_type(lat,lng)
+    try:
+        print(soil_data)
+        soil_name = soil_data['properties']['most_probable_soil_type']
+        print("soil_name")
+        print(soil_name)
+        soil = Soil.objects.get(name__iexact=soil_name)
+        return soil.min_ph, soil.max_ph  # Return the pH range if found
+    except Soil.DoesNotExist:
+        return None
+    except Exception:
+        return None
