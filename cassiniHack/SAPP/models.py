@@ -24,3 +24,12 @@ class Seeds(models.Model):
 
     def __str__(self):
         return self.name
+
+
+class Soil(models.Model):
+    name = models.CharField(max_length=100)  # Soil name
+    min_ph = models.FloatField()  # Minimum pH
+    max_ph = models.FloatField()  # Maximum pH
+
+    def __str__(self):
+        return self.name
