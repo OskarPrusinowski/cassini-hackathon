@@ -66,7 +66,7 @@
 
         <div>
             
-            <img src="img/3.png" class="rounded-circle" style="margin-left: 150px; height: 400px; width: 400px; box-shadow: 7px 10px 5px #908cc8;" alt="...">
+            <img src="static/img/3.png" class="rounded-circle" style="margin-left: 150px; height: 400px; width: 400px; box-shadow: 7px 10px 5px #908cc8;" alt="...">
         </div>
     </section>
 
@@ -87,10 +87,51 @@
         body {
             font-family: Georgia, 'Times New Roman', Times, serif;
         }
-        
+        #result_div {
+            height: 500px;
+            background-color: #0c0e59;
+            margin-left: 100px;
+            margin-right: 100px;
+            border-radius: 20px;
+        }
+        #goToLocation {
+            background-color: #2c2e73;
+            color: white;
+        }
+        #goToLocation:hover{
+            background-color: #726db7;
+        }
     </style>
 <div id="map" ></div>
-<button id="goToLocation">Go to Google Maps</button>
+
+<div style="text-align: center;">
+    <button class="btn btn-lg" id="goToLocation">Search</button>
+</div>
+
+
+<div id="result_div" style="display: none;">
+    <h2 style="padding: 20px;">It looks like the best grain for selected area is:</h2>
+</div>
+
+
+
+
+
+<footer class="container text-center mt-5">
+    <p>© 2024 SAPP. All rights reserved.</p>
+    <div>
+        <a href="#">Privacy policy</a>
+    </div>
+    <div class="mt-3">
+        <a href="#"><img src="facebook-icon.png" alt="Facebook" style="width: 30px;"></a>
+        <a href="#"><img src="twitter-icon.png" alt="Twitter" style="width: 30px;"></a>
+        <a href="#"><img src="linkedin-icon.png" alt="LinkedIn" style="width: 30px;"></a>
+    </div>
+</footer>
+
+</body>
+
+
 <script>
 
     let map;
@@ -119,25 +160,21 @@
         });
     }
 
-    // Funkcja do przekierowania na Google Maps
-    document.getElementById('goToLocation').addEventListener('click', function() {
-        const url = `https://www.google.com/maps?q=${selectedLocation.lat},${selectedLocation.lng}`;
-        window.open(url, '_blank'); // Otwórz link w nowej karcie
+    const button = document.getElementById('goToLocation');
+    const hiddenDiv = document.getElementById('result_div');
+    
+    button.addEventListener('click', function() {
+      // Sprawdzamy, czy div jest ukryty, i go pokazujemy
+      if (hiddenDiv.style.display === 'none') {
+        hiddenDiv.style.display = 'block'; // Pokaż
+      }
     });
 
     window.onload = initMap;
 </script>
-<footer class="container text-center mt-5">
-    <p>© 2024 SAPP. All rights reserved.</p>
-    <div>
-        <a href="#">Privacy policy</a>
-    </div>
-    <div class="mt-3">
-        <a href="#"><img src="facebook-icon.png" alt="Facebook" style="width: 30px;"></a>
-        <a href="#"><img src="twitter-icon.png" alt="Twitter" style="width: 30px;"></a>
-        <a href="#"><img src="linkedin-icon.png" alt="LinkedIn" style="width: 30px;"></a>
-    </div>
-</footer>
 
-</body>
+
+
+
+
 </html>
