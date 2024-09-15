@@ -13,10 +13,9 @@ def get_soil_ph(lat,lng):
     try:
         print(soil_data)
         soil_name = soil_data['properties']['most_probable_soil_type']
-        print("soil_name")
-        print(soil_name)
+
         soil = Soil.objects.get(name__iexact=soil_name)
-        return soil.min_ph, soil.max_ph  # Return the pH range if found
+        return soil.min_ph, soil.max_ph  
     except Soil.DoesNotExist:
         return None
     except Exception:

@@ -21,7 +21,6 @@ class Command(BaseCommand):
             min_ph_soil = row['min_ph_soil']
             max_ph_soil = row['max_ph_soil']
 
-            # Create or update Seed instance
             Seeds.objects.update_or_create(
                 name=name,
                 defaults={

@@ -7,7 +7,8 @@ class RegionalInformationAdmin(admin.ModelAdmin):
 
 @admin.register(Seeds)
 class SeedsAdmin(admin.ModelAdmin):
-    list_display = ('id','name', 'min_temp', 'max_temp', 'min_rainfall', 'max_rainfall', 'min_ph_soil', 'max_ph_soil')
+    list_display = ('id','name', 'min_temp', 'max_temp', 'min_rainfall', 'max_rainfall', 'min_ph_soil', 
+                    'max_ph_soil','start_month','stop_month','min_t_ha','max_t_ha')
 
 @admin.register(Soil)
 class SoilsAdmin(admin.ModelAdmin):

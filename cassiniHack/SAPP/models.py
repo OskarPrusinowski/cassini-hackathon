@@ -1,5 +1,6 @@
 from django.db import models
 
+
 class RegionalInformation(models.Model):
     lat = models.FloatField()  # Latitude
     lng = models.FloatField()  # Longitude
@@ -21,6 +22,10 @@ class Seeds(models.Model):
     max_rainfall = models.FloatField()  # Maximum Rainfall required
     min_ph_soil = models.FloatField()  # Minimum Soil pH required
     max_ph_soil = models.FloatField()  # Maximum Soil pH required
+    start_month = models.IntegerField(null=True, blank=True)  # Start month (integer)
+    stop_month = models.IntegerField(null=True, blank=True)  # Stop month (integer)
+    min_t_ha = models.FloatField(null=True, blank=True)  # Minimum yield per hectare
+    max_t_ha = models.FloatField(null=True, blank=True)  # Maximum yield per hectare
 
     def __str__(self):
         return self.name
@@ -34,7 +39,6 @@ class Soil(models.Model):
     def __str__(self):
         return self.name
     
-
 class SeedPrice(models.Model):
     seed = models.ForeignKey(Seeds, on_delete=models.CASCADE, related_name='prices') 
     date = models.DateField()  # Date of the price entry

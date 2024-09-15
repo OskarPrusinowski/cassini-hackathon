@@ -16,17 +16,15 @@ def welcome(request):
         soil_data = get_soil_ph(lat,lng)
         seeds = list_seeds()
 
-
-        temp,rain = fetch_location_data(lat,lng)
-
-        location ={'temperature':temp,'rainfall':rain,"soil_ph":(soil_data[0]+soil_data[1])/2}
+        list_temp = fetch_location_data(lat,lng)
+        location ={'temperature':list_temp['temperature'],
+                   'rain':list_temp['rain'],
+                   "soil_ph":(soil_data[0]+soil_data[1])/2
+                #    "soil_ph":3
+                   }
 
         ranking = rank_grains_for_location(location,seeds)
-        # items =[
-        #     {'name':'Żyto','score':'100','description':"Przykładowy opis"},
-        #     {'name':'Ryż','score':'80','description':"Przykładowy opis ryżu"},
-        #     {'name':'Ziemniak','score':'20','description':"Przykładowy opis ziemniaka"},
-        #         ]
+
         context = {
             'ranking': ranking
         }
