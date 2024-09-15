@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import RegionalInformation, Seeds,Soil
+from .models import RegionalInformation, Seeds,Soil,SeedPrice
 
 @admin.register(RegionalInformation)
 class RegionalInformationAdmin(admin.ModelAdmin):
@@ -7,8 +7,12 @@ class RegionalInformationAdmin(admin.ModelAdmin):
 
 @admin.register(Seeds)
 class SeedsAdmin(admin.ModelAdmin):
-    list_display = ('name', 'min_temp', 'max_temp', 'min_rainfall', 'max_rainfall', 'min_ph_soil', 'max_ph_soil')
+    list_display = ('id','name', 'min_temp', 'max_temp', 'min_rainfall', 'max_rainfall', 'min_ph_soil', 'max_ph_soil')
 
 @admin.register(Soil)
 class SoilsAdmin(admin.ModelAdmin):
     list_display = ('name', 'min_ph', 'max_ph')
+
+@admin.register(SeedPrice)
+class SeedPricesAdmin(admin.ModelAdmin):
+    list_display = ('id','seed', 'date', 'price')

@@ -33,3 +33,12 @@ class Soil(models.Model):
 
     def __str__(self):
         return self.name
+    
+
+class SeedPrice(models.Model):
+    seed = models.ForeignKey(Seeds, on_delete=models.CASCADE, related_name='prices') 
+    date = models.DateField()  # Date of the price entry
+    price = models.DecimalField(max_digits=10, decimal_places=2)  # Price of the soil
+
+    def __str__(self):
+        return f"{self.seed.name} - {self.date}: {self.price}"
