@@ -5,10 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SAPP</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
             background-color: #141767;
             color: white;
+            font-family: Suse;
             font-size: 25px;
         }
         .main-section {
@@ -27,7 +29,10 @@
             font-size: 1.2em;
         }
         .description-box{
-            width: 600px;
+            width: 900px;
+        }
+        li {
+            margin-left: 20px;
         }
     </style>
     
@@ -51,14 +56,27 @@
 
     <section class="main-section container">
         <div class="description-box">
-            <h1>Let's take a look...</h1>
-            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and 
-                scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into 
-                electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of 
-                Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like
-                 Aldus PageMaker including versions of Lorem Ipsum. </p>
-        
+            <h1>Maximize Your Harvest with Precision Planting</h1>
+            <p>Are you tired of guessing where to plant your seeds for optimal yields?
+                Our cutting-edge technology leverages satellite data to provide farmers like you with precise insights into soil conditions, moisture levels, and sunlight exposure.
+            
+            </p>
+            <p>
+                Discover:
+                <li>
+                    Ideal planting locations tailored to your specific crops
+                </li>
+                <li>
+                    Real-time updates on weather patterns and soil health
+                </li>
+                <li>
+                    Data-driven decisions to optimize your farming practices
+                </li>
+                
+                <li>
+                    Join the thousands of farmers who are already benefiting from our precision planting solutions. Contact us today to learn more.
+                </li>
+            </p>
    
             <p class="scroll-down">Scroll down to find out on your own!</p>
         </div>
@@ -105,12 +123,26 @@
 <div id="map" ></div>
 
 <div style="text-align: center;">
-    <button class="btn btn-lg" id="goToLocation">Search</button>
+    <button class="btn btn-lg" id="goToLocation"><a href="#result_div">Search</a></button>
 </div>
 
 
-<div id="result_div" style="display: none;">
-    <h2 style="padding: 20px;">It looks like the best grain for selected area is:</h2>
+<div id="result_div" style="display: none; padding: 40px;">
+    <div>
+        <h2>It looks like the best grain for selected area is: <b>Wheat</b> &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; Wheat price over time </h2>
+        <h3>Estimated gains (t/ha): 3,6</h3>
+        <h3>Estimated income (PLN/t): 1200</h3>
+        <h3>Estimated total income for 3 ha (PLN): 12 960</h3>
+        <br>
+        <h2>Other preferable plants:</h2>
+        <li>Triticale</li>
+        <li>Barley </li>
+        <li>Oats</li>
+    </div>
+    
+    <div>
+        <img src="static/img/chart.png" class="rounded-square" style="margin-left: 150px; box-shadow: 7px 10px 5px #908cc8; position: absolute; right: 10%; top: 168%; border-radius: 30px;" alt="...">
+    </div>
 </div>
 
 
@@ -135,7 +167,7 @@
 <script>
 
     let map;
-    let selectedLocation = { lat: 52.2297, lng: 21.0122 }; // Domyślna lokalizacja (Warszawa)
+    let selectedLocation = { lat: 52.2297, lng: 21.0122 }; 
 
     function initMap() {
         map = new google.maps.Map(document.getElementById('map'), {
@@ -149,13 +181,12 @@
             map: map
         });
 
-        // Dodaj listener na mapę do aktualizacji lokalizacji
         map.addListener('click', function(event) {
             selectedLocation = {
                 lat: event.latLng.lat(),
                 lng: event.latLng.lng()
             };
-            marker.setPosition(selectedLocation); // Przesuń marker
+            marker.setPosition(selectedLocation);
 
         });
     }
@@ -164,9 +195,9 @@
     const hiddenDiv = document.getElementById('result_div');
     
     button.addEventListener('click', function() {
-      // Sprawdzamy, czy div jest ukryty, i go pokazujemy
+
       if (hiddenDiv.style.display === 'none') {
-        hiddenDiv.style.display = 'block'; // Pokaż
+        hiddenDiv.style.display = 'block'; 
       }
     });
 
