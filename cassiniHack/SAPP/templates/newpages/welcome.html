@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Strona Główna</title>
+    <title>SAPP</title>
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
     <style>
         body {
             background-color: #141767;
             color: white;
+            font-family: Suse;
+            font-size: 25px;
         }
         .main-section {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 50px;
+            padding-bottom: 50px;
+            padding-top: 50px;
         }
         .main-section img {
             border-radius: 50%;
@@ -24,12 +28,16 @@
             margin-top: 20px;
             font-size: 1.2em;
         }
+        .description-box{
+            width: 900px;
+        }
+        li {
+            margin-left: 20px;
+        }
     </style>
     
 </head>
 <body>
-    {% csrf_token %}
-    {%load static%}
     <header class="container">
         <nav class="navbar navbar-expand-lg navbar-dark">
             <a class="navbar-brand" href="#">
@@ -37,23 +45,46 @@
             </a>
             <div class="collapse navbar-collapse">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="#">Strona Główna</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">O Nas</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Usługi</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#">Kontakt</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">About us</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Market</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Contact</a></li>
                 </ul>
             </div>
         </nav>
     </header>
 
     <section class="main-section container">
-        <div>
-            <h1>Let's give farmers even more climate take a look...</h1>
-            <p>Tools and satellite data to improve the efficiency of your land!</p>
+        <div class="description-box">
+            <h1>Maximize Your Harvest with Precision Planting</h1>
+            <p>Are you tired of guessing where to plant your seeds for optimal yields?
+                Our cutting-edge technology leverages satellite data to provide farmers like you with precise insights into soil conditions, moisture levels, and sunlight exposure.
+            
+            </p>
+            <p>
+                Discover:
+                <li>
+                    Ideal planting locations tailored to your specific crops
+                </li>
+                <li>
+                    Real-time updates on weather patterns and soil health
+                </li>
+                <li>
+                    Data-driven decisions to optimize your farming practices
+                </li>
+                
+                <li>
+                    Join the thousands of farmers who are already benefiting from our precision planting solutions. Contact us today to learn more.
+                </li>
+            </p>
+   
             <p class="scroll-down">Scroll down to find out on your own!</p>
         </div>
+
+
         <div>
-            <img src="{% static '/img/1.jpg' %}" class="rounded-circle" style="box-shadow: -10px 7px 10px 5px #0d076d;" alt="...">
+            
+            <img src="static/img/3.png" class="rounded-circle" style="margin-left: 150px; height: 400px; width: 400px; box-shadow: 7px 10px 5px #908cc8;" alt="...">
         </div>
     </section>
 
@@ -65,57 +96,63 @@
     <style>
         #map {
             height: 500px;
-            width: 100%;
+            margin-left: 100px;
+            margin-right: 100px;
         }
         button {
             margin-top: 10px;
         }
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+        }
+        #result_div {
+            height: 500px;
+            background-color: #0c0e59;
+            margin-left: 100px;
+            margin-right: 100px;
+            border-radius: 20px;
+        }
+        #goToLocation {
+            background-color: #2c2e73;
+            color: white;
+        }
+        #goToLocation:hover{
+            background-color: #726db7;
+        }
     </style>
-
-<h1 style="margin-top: 30vh;">Wybierz lokalizację na mapie</h1>
 <div id="map" ></div>
-<button id="goToLocation">Idź do lokalizacji w Google Maps</button>
-<script>
 
-    let map;
-    let selectedLocation = { lat: 52.2297, lng: 21.0122 }; // Domyślna lokalizacja (Warszawa)
+<div style="text-align: center;">
+    <button class="btn btn-lg" id="goToLocation"><a href="#result_div">Search</a></button>
+</div>
 
-    function initMap() {
-        map = new google.maps.Map(document.getElementById('map'), {
-            center: selectedLocation,
-            zoom: 8
-        });
 
-        let marker = new google.maps.Marker({
-            position: selectedLocation,
-            map: map
-        });
-
-        // Dodaj listener na mapę do aktualizacji lokalizacji
-        map.addListener('click', function(event) {
-            selectedLocation = {
-                lat: event.latLng.lat(),
-                lng: event.latLng.lng()
-            };
-            marker.setPosition(selectedLocation); // Przesuń marker
-
-        });
-    }
-
-    // Funkcja do przekierowania na Google Maps
-    document.getElementById('goToLocation').addEventListener('click', function() {
-        const url = `https://www.google.com/maps?q=${selectedLocation.lat},${selectedLocation.lng}`;
-        window.open(url, '_blank'); // Otwórz link w nowej karcie
-    });
-
-    window.onload = initMap;
-</script>
-<footer class="container text-center mt-5">
-    <p>© 2024 SAP. All rights reserved.</p>
+<div id="result_div" style="display: none; padding: 40px;">
     <div>
-        <a href="#">Polityka prywatności</a> | 
-        <a href="#">Warunki korzystania</a> | 
-        <a href="#">Kontakt</a>
+        <h2>It looks like the best grain for selected area is: <b>Wheat</b> &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; &emsp14; Wheat price over time </h2>
+        <h3>Estimated gains (t/ha): 3,6</h3>
+        <h3>Estimated income (PLN/t): 1200</h3>
+        <h3>Estimated total income for 3 ha (PLN): 12 960</h3>
+        <br>
+        <h2>Other preferable plants:</h2>
+        <li>Triticale</li>
+        <li>Barley </li>
+        <li>Oats</li>
+    </div>
+    
+    <div>
+        <img src="static/img/chart.png" class="rounded-square" style="margin-left: 150px; box-shadow: 7px 10px 5px #908cc8; position: absolute; right: 10%; top: 168%; border-radius: 30px;" alt="...">
+    </div>
+</div>
+
+
+
+
+
+<footer class="container text-center mt-5">
+    <p>© 2024 SAPP. All rights reserved.</p>
+    <div>
+        <a href="#">Privacy policy</a>
     </div>
     <div class="mt-3">
         <a href="#"><img src="facebook-icon.png" alt="Facebook" style="width: 30px;"></a>
@@ -125,4 +162,50 @@
 </footer>
 
 </body>
+
+
+<script>
+
+    let map;
+    let selectedLocation = { lat: 52.2297, lng: 21.0122 }; 
+
+    function initMap() {
+        map = new google.maps.Map(document.getElementById('map'), {
+            center: selectedLocation,
+            zoom: 8,
+            mapTypeId: 'hybrid'
+        });
+
+        let marker = new google.maps.Marker({
+            position: selectedLocation,
+            map: map
+        });
+
+        map.addListener('click', function(event) {
+            selectedLocation = {
+                lat: event.latLng.lat(),
+                lng: event.latLng.lng()
+            };
+            marker.setPosition(selectedLocation);
+
+        });
+    }
+
+    const button = document.getElementById('goToLocation');
+    const hiddenDiv = document.getElementById('result_div');
+    
+    button.addEventListener('click', function() {
+
+      if (hiddenDiv.style.display === 'none') {
+        hiddenDiv.style.display = 'block'; 
+      }
+    });
+
+    window.onload = initMap;
+</script>
+
+
+
+
+
 </html>
